@@ -1,0 +1,21 @@
+{
+  "name": "koa-rest-helper",
+  "version": "1.1.0",
+  "description": "Koa-rest-helper is a secondary routing tool used to define REST API.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lizhooh/koa-rest-helper"
+  },
+  "author": "lizhooh",
+  "license": "MIT",
+  "keywords": [
+    "koa",
+    "rest",
+    "koa-rest",
+    "koa-rest-helper"
+  ],
+  "dependencies": {
+    "koa-router": "latest"
+  }
+}
