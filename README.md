@@ -3,11 +3,23 @@
 ### Koa-rest-helper
 Koa-rest-helper is a secondary routing tool used to define REST API.
 
+
+
 ### install
 
 ```bash
 npm install --save koa-rest-helper
 ```
+
+Method | Path |	Route Function
+:--- | :--- | :---
+GET	 | /users | index
+GET	 | /users/new | new
+GET	 | /users/:id	| show
+GET	 | /users/:id/edit | edit
+POST | /users | create
+PUT	 | /users/:id | update
+DELETE | /users/:id | remove
 
 ### use
 
@@ -21,7 +33,7 @@ const app = new Koa();
 const router = new Router();
 
 const helper = Helper('/users', {
-    key: 'id',
+    key: 'id', // <- :id
     // GET /users
     async index(ctx, next) {
         ctx.body = { text: 'index /users/' };
@@ -62,15 +74,6 @@ app
     .use(router.routes())
     .listen(3000, () => {
         console.log('server run in 3000.');
-        const fetch = require('node-fetch');
-
-        fetch('http://127.0.0.1:3000/users').then(res => res.text()).then(res => console.log(res));
-        fetch('http://127.0.0.1:3000/users/new').then(res => res.text()).then(res => console.log(res));
-        fetch('http://127.0.0.1:3000/users', { method: 'POST' }).then(res => res.text()).then(res => console.log(res));
-        fetch('http://127.0.0.1:3000/users/1').then(res => res.text()).then(res => console.log(res));
-        fetch('http://127.0.0.1:3000/users/1/edit').then(res => res.text()).then(res => console.log(res));
-        fetch('http://127.0.0.1:3000/users/1', { method: 'PUT' }).then(res => res.text()).then(res => console.log(res));
-        fetch('http://127.0.0.1:3000/users/1', { method: 'DELETE' }).then(res => res.text()).then(res => console.log(res));
     })
     ;
 
