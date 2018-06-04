@@ -2,6 +2,8 @@
 ### Koa-rest-helper
 Koa-rest-helper is a secondary routing tool used to define REST API.
 
+<img src="https://img.shields.io/npm/v/koa-rest-helper.svg" style="width: auto; height: auto"/>
+
 ### API
 
 ```js
