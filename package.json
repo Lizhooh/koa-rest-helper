@@ -1,6 +1,6 @@
 {
   "name": "koa-rest-helper",
-  "version": "1.1.3",
+  "version": "2.0.0",
   "description": "Koa-rest-helper is a secondary routing tool used to define REST API.",
   "main": "index.js",
   "repository": {
@@ -16,6 +16,9 @@
     "koa-rest-helper"
   ],
   "dependencies": {
-    "koa-router": "latest"
+    "koa": "^2.5.1",
+    "koa-logger": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "node-fetch": "^2.1.2"
   }
 }

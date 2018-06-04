@@ -1,42 +1,42 @@
+const Router = require('koa-router');
+
 function isFunction(obj) {
     return typeof obj === 'function';
 }
 
-function Helper(path, obj) {
-    const router = new require('koa-router')();
-    const Path = require('path');
-    const _ = (a, b) => Path.join(a, b).replace(/\\/g, '/');
-
-    obj = {
-        key: 'id',
-        ...obj
-    };
+function Helper(path, rest) {
+    rest = { key: 'id', ...rest };
+    const router = new Router({
+        prefix: path,
+    });
 
     router
-        .get(_(path, '/'), async (ctx, next) => {
-            isFunction(obj.index) ? await obj.index(ctx, next) : await next();
+        .get('/', async (ctx, next) => {
+            isFunction(rest.index) ? await rest.index(ctx, next) : await next();
         })
-        .get(_(path, '/new'), async (ctx, next) => {
-            isFunction(obj.new) ? await obj.new(ctx, next) : await next();
+        .get(`/:${rest.key}`, async (ctx, next) => {
+            isFunction(rest.show) ? await rest.show(ctx, next) : await next();
         })
-        .get(_(path, `/:${obj.key}/edit`), async (ctx, next) => {
-            isFunction(obj.edit) ? await obj.edit(ctx, next) : await next();
+        .post('/', async (ctx, next) => {
+            isFunction(rest.create) ? await rest.create(ctx, next) : await next();
         })
-        .get(_(path, `/:${obj.key}`), async (ctx, next) => {
-            isFunction(obj.show) ? await obj.show(ctx, next) : await next();
+        .put(`/:${rest.key}`, async (ctx, next) => {
+            isFunction(rest.update) ? await rest.update(ctx, next) : await next();
         })
-        .post(path, async (ctx, next) => {
-            isFunction(obj.create) ? await obj.create(ctx, next) : await next();
+        .del(`/:${rest.key}`, async (ctx, next) => {
+            isFunction(rest.remove) ? await rest.remove(ctx, next) : await next();
         })
-        .put(_(path, `/:${obj.key}`), async (ctx, next) => {
-            isFunction(obj.update) ? await obj.update(ctx, next) : await next();
+
+        .get('/new', async (ctx, next) => {
+            isFunction(rest.new) ? await rest.new(ctx, next) : await next();
         })
-        .del(_(path, `/:${obj.key}`), async (ctx, next) => {
-            isFunction(obj.remove) ? await obj.remove(ctx, next) : await next();
+        .get(`/:${rest.key}/edit`, async (ctx, next) => {
+            isFunction(rest.edit) ? await rest.edit(ctx, next) : await next();
         })
         ;
 
-    return () => router.routes();
+    router.__rest = rest;
+    return router;
 }
 
 module.exports = Helper;
