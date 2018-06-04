@@ -4,19 +4,19 @@ import * as Router from 'koa-router';
 export interface RestObject {
     key?: string,
     /** GET /users */
-    index?: Koa.Middleware,
+    index?: (ctx: Koa.Context, next: () => any) => any,
     /** GET /users/:id */
-    show?: Koa.Middleware,
+    show?: (ctx: Koa.Context, next: () => any) => any,
     /** POST /users */
-    create?: Koa.Middleware,
+    create?: (ctx: Koa.Context, next: () => any) => any,
     /** PUT /users/:id */
-    update?: Koa.Middleware,
+    update?: (ctx: Koa.Context, next: () => any) => any,
     /** DELETE /users/:id */
-    remove?: Koa.Middleware,
+    remove?: (ctx: Koa.Context, next: () => any) => any,
     /** GET /users/edit/:id */
-    edit?: Koa.Middleware,
+    edit?: (ctx: Koa.Context, next: () => any) => any,
     /** GET /users/new */
-    new?: Koa.Middleware,
+    new?: (ctx: Koa.Context, next: () => any) => any,
 }
 
 export default function (prefix: string, rest: RestObject): Router;

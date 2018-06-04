@@ -5,9 +5,6 @@ Koa-rest-helper is a secondary routing tool used to define REST API.
 ### API
 
 ```js
-import * as Koa from 'koa';
-import * as Router from 'koa-router';
-
 export interface RestObject {
     key?: string,
     index?: Koa.Middleware,
@@ -25,6 +22,7 @@ export default function (prefix: string, rest: RestObject): Router;
 ### install
 
 ```bash
+npm install --save koa-router
 npm install --save koa-rest-helper
 ```
 
