@@ -35,7 +35,7 @@ function Helper(path, rest) {
         })
         ;
 
-    router.__rest = rest;
+    router.rest = () => rest;
     return router;
 }
 
